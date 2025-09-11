@@ -3,7 +3,9 @@ class Subject
 {
 	char* subject;
 public:
-	void EnterSubjects(int& realSize);
+	Subject();
+	void EnterSubjects();
 	int SubjectCheck();
+	char* GetSubjects();
+	~Subject();
 };
-

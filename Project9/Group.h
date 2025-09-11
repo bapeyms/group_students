@@ -4,12 +4,17 @@
 
 class Group
 {
-	char* name;
-	Student* list;
+	char* groupName;
+	/*Student* list;
 	int countOfStudents;
 	Subject* sublist;
-	int countOfSubjects;
+	int countOfSubjects;*/
 public:
-
+	Group();
+	void EnterGroupName();
+	char* GetGroupName();
+	void ShowAllInfo();
+	~Group();
+	
 };
 
