@@ -3,6 +3,18 @@
 using namespace std;
 
 Student::Student() :name(nullptr), grades(nullptr) {}
+Student::Student(const Student& n)
+{
+	name = new char[strlen(n.name) + 1];
+	strcpy_s(name, strlen(n.name) + 1, n.name);
+
+}
+Student::~Student()
+{
+	delete[] name;
+	delete[] grades;
+}
+
 void Student::EnterStudents()
 {
 	const int N = 256;
@@ -16,6 +28,7 @@ void Student::EnterStudents()
 	cin.getline(data, N);
 	name = new char[strlen(data) + 1];
 	strcpy_s(name, strlen(data) + 1, data);
+	numberOfStuds++;
 }
 int Student::StudentCheck()
 {
@@ -31,6 +44,7 @@ int Student::StudentCheck()
 	}
 	return choice;
 }
+
 char* Student::GetStudents()
 {
 	return name;
@@ -38,9 +52,4 @@ char* Student::GetStudents()
 void Student::EnterGrades()
 {
 	//
-}
-Student::~Student()
-{
-	delete[] name;
-	delete[] grades;
 }

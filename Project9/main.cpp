@@ -41,6 +41,7 @@ int main()
 	}
 	cout << endl << endl;
 
+
 	int numberOfStuds;
 	cout << "Desired number of students: ";
 	cin >> numberOfStuds;
@@ -69,6 +70,8 @@ int main()
 		cout << "Student #" << i + 1 << allStuds[i].GetStudents();
 	}
 	cout << endl << endl;
+
+
 
 	cout << "- GRADES -" << endl;
 	for (int i = 0; i < numberOfStuds; i++)

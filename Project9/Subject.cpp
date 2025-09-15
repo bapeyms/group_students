@@ -34,7 +34,7 @@ int Subject::SubjectCheck()
 }
 char* Subject::GetSubjects()
 {
-	cout << subject << endl;
+	return subject;
 }
 Subject::~Subject()
 {

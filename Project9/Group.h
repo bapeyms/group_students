@@ -5,16 +5,23 @@
 class Group
 {
 	char* groupName;
-	/*Student* list;
+	int** gradeList;
+	Student* studList;
 	int countOfStudents;
 	Subject* sublist;
-	int countOfSubjects;*/
+	int countOfSubjects;
 public:
-	Group();
+	Group(int numOfStuds, int numOfSubjs);
+	~Group();
+
 	void EnterGroupName();
 	char* GetGroupName();
+
+	void AddStudent(const char* studNames);
+
+	void AddSubject(const char* name);
 	void ShowAllInfo();
-	~Group();
+	
 	
 };
 
