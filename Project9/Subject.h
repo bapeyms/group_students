@@ -4,8 +4,9 @@ class Subject
 	char* subject;
 public:
 	Subject();
-	void EnterSubjects();
-	int SubjectCheck();
-	char* GetSubjects();
+	Subject(const char* subj);
+	Subject(const Subject& subj);
+	Subject& operator=(const Subject& subj);
+	char* GetSubject();
 	~Subject();
 };

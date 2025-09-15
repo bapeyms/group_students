@@ -2,19 +2,15 @@
 class Student
 {
 	char* name;
-	int numberOfStuds;
-	int* grades;
-	int numberOfGrades;
 public:
 	Student();
-	Student(const Student& n);
+	Student(const Student& stud);
+	Student& operator=(const Student& stud);
 	~Student();
 
 	void EnterStudents();
 	int StudentCheck();
 
 	char* GetStudents();
-	void EnterGrades();
-	
 };
 

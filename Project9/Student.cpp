@@ -1,18 +1,33 @@
 #include <iostream>
+#include "Group.h"
 #include "Student.h"
+#include "Subject.h"
 using namespace std;
 
-Student::Student() :name(nullptr), grades(nullptr) {}
-Student::Student(const Student& n)
+Student::Student() :name(nullptr) {}
+Student::Student(const Student& stud) : name(nullptr)
 {
-	name = new char[strlen(n.name) + 1];
-	strcpy_s(name, strlen(n.name) + 1, n.name);
-
+	if (stud.name) {
+		name = new char[strlen(stud.name) + 1];
+		strcpy_s(name, strlen(stud.name) + 1, stud.name);
+	}
+}
+Student& Student::operator=(const Student& stud)
+{
+	if (this != &stud)
+	{
+		delete[] name;
+		name = nullptr;
+		if (stud.name) {
+			name = new char[strlen(stud.name) + 1];
+			strcpy_s(name, strlen(stud.name) + 1, stud.name);
+		}
+	}
+	return *this;
 }
 Student::~Student()
 {
 	delete[] name;
-	delete[] grades;
 }
 
 void Student::EnterStudents()
@@ -28,7 +43,6 @@ void Student::EnterStudents()
 	cin.getline(data, N);
 	name = new char[strlen(data) + 1];
 	strcpy_s(name, strlen(data) + 1, data);
-	numberOfStuds++;
 }
 int Student::StudentCheck()
 {
@@ -48,8 +62,4 @@ int Student::StudentCheck()
 char* Student::GetStudents()
 {
 	return name;
-}
-void Student::EnterGrades()
-{
-	//
 }

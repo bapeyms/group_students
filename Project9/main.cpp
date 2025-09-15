@@ -11,36 +11,21 @@ int main()
 	app.EnterGroupName();
 	cout << endl;
 
-	int numberOfSubjs;
-	cout << "Desired number of subjects: ";
-	cin >> numberOfSubjs;
-	cin.ignore(1000, '\n');
-	while (numberOfSubjs <= 0)
-	{
-		cout << "Only possitive values are allowed! Number of subjects: ";
-		cin >> numberOfSubjs;
-		cin.ignore(1000, '\n');
-	}
+	const int numberOfSubjs = 4;
+	Subject allSubjs[numberOfSubjs] = {
+		Subject("Programmimg"),
+		Subject("Probability Theory and Mathematical Statistics"),
+		Subject("Business English"),
+		Subject("Operating Systems")
+	};
 
-	Subject* allSubjs = new Subject[numberOfSubjs];
-	int realnumberOfSubjs = 0;
-	int choice1 = allSubjs[0].SubjectCheck();
-	while (choice1 == 1 && realnumberOfSubjs < numberOfSubjs)
-	{
-		allSubjs[realnumberOfSubjs].EnterSubjects();
-		realnumberOfSubjs++;
-		choice1 = allSubjs[realnumberOfSubjs -1].SubjectCheck();
-	}
-	cout << "Input complete!" << endl << endl;
-	numberOfSubjs = realnumberOfSubjs;
 	cout << "- SUBJECTS -" << endl;
-	cout << "Actual number of subjects: " << numberOfSubjs << endl;
+	cout << "Number of subjects: " << numberOfSubjs << endl;
 	for (int i = 0; i < numberOfSubjs; i++)
 	{
-		cout << "Subject #" << i + 1 << allSubjs[i].GetSubjects() << endl;
+		cout << "Subject #" << i + 1 << ": " << allSubjs[i].GetSubject() << endl;
 	}
-	cout << endl << endl;
-
+	cout << endl;
 
 	int numberOfStuds;
 	cout << "Desired number of students: ";
@@ -71,12 +56,12 @@ int main()
 	}
 	cout << endl << endl;
 
-
-
 	cout << "- GRADES -" << endl;
-	for (int i = 0; i < numberOfStuds; i++)
-	{
-		cout << "Student #" << i + 1 << ": " << allStuds[i].GetStudents();
-		cout << allSubjs[i].GetSubjects();
-	}
+	app.SetStud(allStuds, numberOfStuds);
+	app.SetSubj(allSubjs, numberOfSubjs);
+	app.EnterGrades();
+
+	cout << "- GRADES TABLE -" << endl;
+	app.PrintGrades();
+	delete[] allStuds;
 }
