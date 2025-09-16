@@ -2,28 +2,24 @@
 #include "Student.h"
 #include "Subject.h"
 
-class Group
-{
-	char* groupName;
+class Group {
+private:
+    char* groupName;
+    Student* students;
+    Subject* subjects;
+    int studentsCount;
+    int subjectsCount;
 
-	int** gradeList;
-
-	Student* studList;
-	int countOfStudents;
-
-	Subject* subList;
-	int countOfSubjects;
 public:
-	Group();
-	Group(const char* g, int numOfStuds, int numOfSubjs);
-	~Group();
+    Group();
+    ~Group();
 
-	void EnterGroupName();
-	char* GetGroupName();
-	void EnterGrades();
-	void PrintGrades();
+    Group(const Group& gr);
 
-	void SetSubj(Subject* subs, int numb1);
-	void SetStud(Student* studs, int numb2);
+    void EnterGroupName();
+    void SetStudents(Student* studs, int count);
+    void SetSubjects(Subject* subjs, int count);
+
+    void PrintGradesTable();
 };
 

@@ -1,16 +1,24 @@
 #pragma once
-class Student
-{
-	char* name;
+#include "Subject.h"
+
+class Student {
+private:
+    char* name;
+    int** grades;
+    int* gradeCounts;
+    int subjectsCount;
+
 public:
-	Student();
-	Student(const Student& stud);
-	Student& operator=(const Student& stud);
-	~Student();
+    Student();
+    Student(const char* studName, int subjectsNum);
+    ~Student();
 
-	void EnterStudents();
-	int StudentCheck();
+    Student(const Student& st);
+    Student& operator=(const Student& st);
 
-	char* GetStudents();
+    void SetSubjects(const Subject* allSubjects, int count);
+    void EnterStudentName();
+    void EnterGrades(const Subject* allSubjects, int subjectsNum);
+    void PrintGrades(const Subject* allSubjects, int subjectsNum);
 };
 
