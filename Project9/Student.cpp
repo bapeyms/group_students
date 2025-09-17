@@ -51,49 +51,6 @@ Student::Student(const Student& st)
             grades[i][j] = st.grades[i][j];
         }
     }
-
-}
-Student& Student::operator=(const Student& st)
-{
-    if (this == &st) 
-    {
-        return *this;
-    }
-    delete[] name;
-    if (grades != nullptr) 
-    {
-        for (int i = 0; i < subjectsCount; ++i) 
-        {
-            delete[] grades[i];
-        }
-        delete[] grades;
-    }
-    delete[] gradeCounts;
-    subjectsCount = st.subjectsCount;
-    name = new char[strlen(st.name) + 1];
-    strcpy_s(name, strlen(st.name) + 1, st.name);
-    gradeCounts = new int[subjectsCount];
-    for (int i = 0; i < subjectsCount; ++i) 
-    {
-        gradeCounts[i] = st.gradeCounts[i];
-    }
-    grades = new int* [subjectsCount];
-    for (int i = 0; i < subjectsCount; ++i) 
-    {
-        if (st.grades[i]) 
-        {
-            grades[i] = new int[gradeCounts[i]];
-            for (int j = 0; j < gradeCounts[i]; ++j) 
-            {
-                grades[i][j] = st.grades[i][j];
-            }
-        }
-        else 
-        {
-            grades[i] = nullptr;
-        }
-    }
-    return *this;
 }
 
 void Student::EnterStudentName()

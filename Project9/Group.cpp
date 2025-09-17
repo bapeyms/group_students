@@ -95,6 +95,7 @@ void Group::PrintGradesTable()
         students[i].PrintGrades(subjects, subjectsCount);
         cout << endl;
     }
+    cout << endl;
 }
 
 void Group::PrintStAverages()
@@ -103,8 +104,37 @@ void Group::PrintStAverages()
     {
         cout << students[i].GetStudentName() << ": " << students[i].GetAverageGrade() << endl;
     }
+    cout << endl;
 }
-
+void Group::PrintSubjAverages()
+{
+    for (int i = 0; i < subjectsCount; ++i)
+    {
+        double total = 0.0;
+        int count = 0;
+        for (int j = 0; j < studentsCount; ++j)
+        {
+            int** studentGrades = students[j].GetGrades();
+            int* gradeCounts = students[j].GetGradeCounts();
+            for (int k = 0; k < gradeCounts[i]; ++k)
+            {
+                total += studentGrades[i][k];
+                count++;
+            }
+        }
+        cout << subjects[i].GetSubject() << ": ";
+        if (count > 0)
+        {
+            cout << total / count;
+        }
+        else 
+        {
+            cout << 0.0;
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
 void Group::PrintGroupAverage()
 {
     double total = 0.0;
@@ -123,7 +153,117 @@ void Group::PrintGroupAverage()
         }
     }
     cout << total / count;
+    cout << endl << endl;
 }
 
+void Group::FindMinGrade(int subjectIndex, int& minGrade, char*& minStudentName, bool& found)
+{
+    found = false;
+    for (int j = 0; j < studentsCount; ++j)
+    {
+        int** studentGrades = students[j].GetGrades();
+        int* gradeCounts = students[j].GetGradeCounts();
+        for (int k = 0; k < gradeCounts[subjectIndex]; ++k) 
+        {
+            if (!found) 
+            {
+                minGrade = studentGrades[subjectIndex][k];
+                if (minStudentName) delete[] minStudentName;
+                minStudentName = new char[strlen(students[j].GetStudentName()) + 1];
+                strcpy_s(minStudentName, strlen(students[j].GetStudentName()) + 1, students[j].GetStudentName());
+                found = true;
+            }
+            else if (studentGrades[subjectIndex][k] < minGrade) 
+            {
+                minGrade = studentGrades[subjectIndex][k];
+                if (minStudentName) delete[] minStudentName;
+                minStudentName = new char[strlen(students[j].GetStudentName()) + 1];
+                strcpy_s(minStudentName, strlen(students[j].GetStudentName()) + 1, students[j].GetStudentName());
+            }
+        }
+    }
+}
+void Group::FindMaxGrade(int subjectIndex, int& maxGrade, char*& maxStudentName, bool& found)
+{
+    found = false;
+    for (int j = 0; j < studentsCount; ++j)
+    {
+        int** studentGrades = students[j].GetGrades();
+        int* gradeCounts = students[j].GetGradeCounts();
+        for (int k = 0; k < gradeCounts[subjectIndex]; ++k) 
+        {
+            if (!found) 
+            {
+                maxGrade = studentGrades[subjectIndex][k];
+                if (maxStudentName) delete[] maxStudentName;
+                maxStudentName = new char[strlen(students[j].GetStudentName()) + 1];
+                strcpy_s(maxStudentName, strlen(students[j].GetStudentName()) + 1, students[j].GetStudentName());
+                found = true;
+            }
+            else if (studentGrades[subjectIndex][k] > maxGrade) 
+            {
+                maxGrade = studentGrades[subjectIndex][k];
+                if (maxStudentName) delete[] maxStudentName;
+                maxStudentName = new char[strlen(students[j].GetStudentName()) + 1];
+                strcpy_s(maxStudentName, strlen(students[j].GetStudentName()) + 1, students[j].GetStudentName());
+            }
+        }
+    }
+}
+void Group::PrintMinMaxGrades() 
+{
+    for (int i = 0; i < subjectsCount; ++i) 
+    {
+        int minGrade;
+        char* minStudentName = nullptr;
+        bool minFound;
+
+        int maxGrade;
+        char* maxStudentName = nullptr;
+        bool maxFound;
+
+        FindMinGrade(i, minGrade, minStudentName, minFound);
+        FindMaxGrade(i, maxGrade, maxStudentName, maxFound);
+
+        cout << subjects[i].GetSubject() << ":" << endl;
+        if (minFound) 
+        {
+            cout << "  Min: " << minGrade << " (Student: ";
+            if (minStudentName != nullptr) 
+            {
+                cout << minStudentName << ")";
+            }
+            else 
+            {
+                cout << "N/A";
+            }
+            cout << endl;
+        }
+        else 
+        {
+            cout << "  No grades found for this subject :(" << endl;
+        }
+
+        if (maxFound) 
+        {
+            cout << "  Max: " << maxGrade << " (Student: ";
+            if (maxStudentName != nullptr) 
+            {
+                cout << maxStudentName << ")";
+            }
+            else 
+            {
+                cout << "N/A";
+            }
+            cout << endl;
+        }
+        else 
+        {
+            cout << "  No grades found for this subject :(" << endl;
+        }
+        delete[] minStudentName;
+        delete[] maxStudentName;
+    }
+}
 
 

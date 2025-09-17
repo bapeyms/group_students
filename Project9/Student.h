@@ -14,7 +14,6 @@ public:
     ~Student();
 
     Student(const Student& st);
-    Student& operator=(const Student& st);
 
     void EnterStudentName();
     void EnterGrades(const Subject* allSubjects, int subjectsNum);

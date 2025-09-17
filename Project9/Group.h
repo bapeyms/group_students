@@ -22,6 +22,11 @@ public:
 
     void PrintGradesTable();
     void PrintStAverages();
+    void PrintSubjAverages();
     void PrintGroupAverage();
+
+    void FindMinGrade(int subjectIndex, int& minGrade, char*& minStudentName, bool& found);
+    void FindMaxGrade(int subjectIndex, int& maxGrade, char*& maxStudentName, bool& found);
+    void PrintMinMaxGrades();
 };
 

@@ -19,24 +19,6 @@ Subject::Subject(const Subject& sb)
     name = new char[strlen(sb.name) + 1];
     strcpy_s(name, strlen(sb.name) + 1, sb.name);
 }
-Subject& Subject::operator=(const Subject& sb) 
-{
-    if (this == &sb) 
-    {
-        return *this;
-    }
-    delete[] name;
-    if (sb.name) 
-    {
-        name = new char[strlen(sb.name) + 1];
-        strcpy_s(name, strlen(sb.name) + 1, sb.name);
-    }
-    else 
-    {
-        name = nullptr;
-    }
-    return *this;
-}
 
 const char* Subject::GetSubject() const
 {

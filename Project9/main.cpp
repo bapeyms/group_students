@@ -51,11 +51,14 @@ int main()
     app.PrintGradesTable();
 
     cout << "- AVERAGE VALUES -" << endl;
-    cout << "Average for group: ";
+    cout << "- Average for group: ";
     app.PrintGroupAverage();
-    // add checks in the grades entering
-   // cout << "Average per students: " << endl;
-
+    cout << "- Average per students: " << endl;
+    app.PrintStAverages();
+    cout << "- Average per subject: " << endl;
+    app.PrintSubjAverages();
+    cout << "- Min and Max: " << endl;
+    app.PrintMinMaxGrades();
 
     delete[] allStuds;
     delete[] allSubjs;
