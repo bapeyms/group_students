@@ -16,9 +16,13 @@ public:
     Student(const Student& st);
     Student& operator=(const Student& st);
 
-    void SetSubjects(const Subject* allSubjects, int count);
     void EnterStudentName();
     void EnterGrades(const Subject* allSubjects, int subjectsNum);
     void PrintGrades(const Subject* allSubjects, int subjectsNum);
+
+    char* GetStudentName();
+    int** GetGrades();
+    int* GetGradeCounts();
+    double GetAverageGrade();
 };
 

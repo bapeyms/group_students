@@ -32,6 +32,7 @@ Student::~Student()
 
 Student::Student(const Student& st)
 {
+    subjectsCount = st.subjectsCount;
     name = new char[strlen(st.name) + 1];
     strcpy_s(name, strlen(st.name) + 1, st.name);
 
@@ -152,5 +153,41 @@ void Student::PrintGrades(const Subject* allSubjects, int subjectsNum)
             cout << grades[i][j] << " ";
         }
         cout << "\n";
+    }
+}
+
+char* Student::GetStudentName()
+{
+    return name;
+}
+int** Student::GetGrades()
+{
+    return grades;
+}
+
+int* Student::GetGradeCounts()
+{
+    return gradeCounts;
+}
+
+double Student::GetAverageGrade()
+{
+    double totalGrades = 0.0;
+    int count = 0;
+    for (int i = 0; i < subjectsCount; i++)
+    {
+        for (int j = 0; j < gradeCounts[i]; j++)
+        {
+            totalGrades += grades[i][j];
+        }
+        count += gradeCounts[i];
+    }
+    if (count > 0)
+    {
+        return totalGrades / count;
+    }
+    else
+    {
+        return 0.0;
     }
 }

@@ -8,8 +8,6 @@ Subject::Subject(const char* subjName)
 {
     name = new char[strlen(subjName) + 1];
     strcpy_s(name, strlen(subjName) + 1, subjName);
-
-    name = nullptr;
 }
 Subject::~Subject()
 {

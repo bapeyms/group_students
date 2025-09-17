@@ -97,5 +97,33 @@ void Group::PrintGradesTable()
     }
 }
 
+void Group::PrintGroupAverage()
+{
+    double total = 0.0;
+    int count = 0;
+    for (int i = 0; i < subjectsCount; i++)
+    {
+        int** stGrades = students[i].GetGrades();
+        int* grCounts = students[i].GetGradeCounts();
+        for (int j = 0; j < studentsCount; j++)
+        {
+            for (int k = 0; k < grCounts[j]; k++)
+            {
+                total += stGrades[j][k];
+                count++;
+           }
+        }
+    }
+    if (count > 0)
+    {
+        cout << total / count;
+    }
+    else
+    {
+        cout << 0.0;
+    }
+    cout << endl;
+}
+
 
 

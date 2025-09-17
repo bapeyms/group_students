@@ -21,5 +21,6 @@ public:
     void SetSubjects(Subject* subjs, int count);
 
     void PrintGradesTable();
+    void PrintGroupAverage();
 };
 

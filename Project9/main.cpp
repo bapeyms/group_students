@@ -18,7 +18,7 @@ int main()
     allSubjs[2].SetSubject("Business English");
     allSubjs[3].SetSubject("Operating Systems");
 
-    cout << "- SUBJECTS -" << endl;
+    cout << "- SUBJECTS AND STUDENTS-" << endl;
     cout << "Number of subjects: " << numberOfSubjs << endl;
     for (int i = 0; i < numberOfSubjs; i++)
     {
@@ -49,6 +49,12 @@ int main()
 
     cout << "- GRADE TABLE -" << endl;
     app.PrintGradesTable();
+
+    cout << "- AVERAGE VALUES -" << endl;
+    cout << "Average for group: " << endl;
+    app.PrintGroupAverage();
+   // cout << "Average per students: " << endl;
+
 
     delete[] allStuds;
     delete[] allSubjs;
