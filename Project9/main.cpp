@@ -51,8 +51,9 @@ int main()
     app.PrintGradesTable();
 
     cout << "- AVERAGE VALUES -" << endl;
-    cout << "Average for group: " << endl;
+    cout << "Average for group: ";
     app.PrintGroupAverage();
+    // add checks in the grades entering
    // cout << "Average per students: " << endl;
 
 

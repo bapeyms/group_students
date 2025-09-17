@@ -97,15 +97,23 @@ void Group::PrintGradesTable()
     }
 }
 
+void Group::PrintStAverages()
+{
+    for (int i = 0; i < studentsCount; i++)
+    {
+        cout << students[i].GetStudentName() << ": " << students[i].GetAverageGrade() << endl;
+    }
+}
+
 void Group::PrintGroupAverage()
 {
     double total = 0.0;
     int count = 0;
-    for (int i = 0; i < subjectsCount; i++)
+    for (int i = 0; i < studentsCount; i++)
     {
         int** stGrades = students[i].GetGrades();
         int* grCounts = students[i].GetGradeCounts();
-        for (int j = 0; j < studentsCount; j++)
+        for (int j = 0; j < subjectsCount; j++)
         {
             for (int k = 0; k < grCounts[j]; k++)
             {
@@ -114,15 +122,7 @@ void Group::PrintGroupAverage()
            }
         }
     }
-    if (count > 0)
-    {
-        cout << total / count;
-    }
-    else
-    {
-        cout << 0.0;
-    }
-    cout << endl;
+    cout << total / count;
 }
 
 
